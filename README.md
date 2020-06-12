@@ -23,4 +23,4 @@ $ `logseeker -f ./bin/errorLog -s "core:notice"`> core-notices.txt
 
 ## Flags:
 
-`-f` = path to; log file, `-s` = search word, `-r` = regex expression
+`-f` = path/log file, `-s` = search word OR `-r` = regex expression
