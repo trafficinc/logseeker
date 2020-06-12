@@ -29,18 +29,15 @@ void FindWordRegEx(char *regeex, char *file)
 
     FILE *fp = fopen(file, "r");
     while (fgets(line, sizeof(line), fp) != NULL){
-        //printf("%d", regexec(&regexCompiled, line, 0, NULL, 0));
         if (regexec(&regexCompiled, line, 0, NULL, 0) == 0){
             printf("%s", line);
         }
     }
 
-
 }
 
 void display_errors(vec_str_t errors)
 {
-    //printf("%d\n", errors.length);
     int i;
     for (i = 0; i < errors.length; i++) {
         printf("%s", errors.data[i]);
@@ -65,12 +62,10 @@ int main(int argc, char *argv[])
         if (strcmp("-r", argv[i]) == 0)
         {
             isRegex = 1;
-            //printf("%s\n", argv[i + 1]);
             regexWord = argv[i + 1];
         }
     }
 
-    // Create Error Dynamic Array
     vec_str_t errors;
     vec_init(&errors);
 
@@ -82,11 +77,9 @@ int main(int argc, char *argv[])
         vec_push(&errors, "Error: -f [file] is not specified");
     }
 
-    //printf("%d\n", errors.length);
     if (errors.length > 0){
         display_errors(errors);
         vec_deinit(&errors);
-        //printf("%p\n", &errors);
         return (0);
     }
 
