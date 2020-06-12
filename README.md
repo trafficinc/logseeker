@@ -17,6 +17,9 @@ $ `sudo make install`
 
 [serach vis word] $ `logseeker -f ./bin/errorLog -s "secret"`
 
+## Dump results to a file
+
+$ `logseeker -f ./bin/errorLog -s "core:notice"`> core-notices.txt
 
 ## Flags:
 
