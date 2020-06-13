@@ -39,12 +39,10 @@ void display_errors(vec_str_t errors) {
     }
 }
 
-
-int main(int argc, char *argv[])
-{
-    char * fileLocation;
-    char * searchWord;
-    char * regexWord;
+int main(int argc, char *argv[]) {
+    char *fileLocation;
+    char *searchWord;
+    char *regexWord;
     int isRegex = 0;
 
     int c;
@@ -77,15 +75,14 @@ int main(int argc, char *argv[])
     vec_str_t errors;
     vec_init(&errors);
 
-    if (NULL == searchWord && strlen(regexWord) == 0)
-    {
+    if (NULL == searchWord && strlen(regexWord) == 0) {
         vec_push(&errors, "Error: -s [search word] is not specified");
     }
-    if (NULL == fileLocation){
+    if (NULL == fileLocation) {
         vec_push(&errors, "Error: -f [file] is not specified");
     }
 
-    if (errors.length > 0){
+    if (errors.length > 0) {
         display_errors(errors);
         vec_deinit(&errors);
         return (0);
