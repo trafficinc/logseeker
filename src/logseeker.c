@@ -57,7 +57,6 @@ int main(int argc, char *argv[])
                 searchWord = optarg;
                 break;
             case 'r':
-                //printf ("option -r with value `%s'\n", optarg);
                 isRegex = 1;
                 regexWord = optarg;
                 break;
