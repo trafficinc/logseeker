@@ -1,6 +1,6 @@
 /** 
  * Copyright (c) 2014 rxi
- *
+ * Title:Vec, Author: https://github.com/rxi <https://github.com/rxi/vec>
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the MIT license. See LICENSE for details.
  */

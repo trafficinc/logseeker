@@ -1,20 +1,44 @@
 #include <stdio.h>
 #include <string.h>
+#include <getopt.h>
 
 #include "logseeker.h"
-//Title:Vec, Author: https://github.com/rxi <https://github.com/rxi/vec>
 #include "vec.h"
-#include "vec.c"
 
 
-void display_errors(vec_str_t errors)
-{
+#define VERSION "1.1"
+
+static struct option long_opts[] = {
+        {"log_path",     required_argument, NULL, 'f'},
+        {"word_search",  required_argument, NULL, 's'},
+        {"regex_search", required_argument, NULL, 'r'},
+        {"help",         no_argument,       NULL, 'h'},
+        {"version",      no_argument,       NULL, 'v'},
+        {NULL,           0,                 NULL, 0}
+};
+
+static void usage() {
+    printf("Usage: logseeker <options>                             \n"
+           "  Options:                                             \n"
+           "    -f          <F>  Log file to scan                  \n"
+           "    -s          <S>  Search with Word                  \n"
+           "    -- OR --                                           \n"
+           "    -r          <R>  Search with Regex                 \n"
+           "                                                       \n"
+           "    -v          Print version details                  \n"
+           "    -h          Usage                                  \n"
+           "                                                       \n"
+           "                                                       \n"
+           "                                                       \n");
+}
+
+void display_errors(vec_str_t errors) {
     int i;
-    for (i = 0; i < errors.length; i++)
-    {
+    for (i = 0; i < errors.length; i++) {
         printf("%s", errors.data[i]);
     }
 }
+
 
 int main(int argc, char *argv[])
 {
@@ -22,19 +46,32 @@ int main(int argc, char *argv[])
     char * searchWord;
     char * regexWord;
     int isRegex = 0;
-    int i;
-    for (i = 0; i < argc; ++i)
-    {
-        if (strcmp("-f", argv[i]) == 0){
-            fileLocation = argv[i + 1];
-        }
-        if (strcmp("-s", argv[i]) == 0){
-            searchWord = argv[i + 1];
-        }
-        if (strcmp("-r", argv[i]) == 0)
-        {
-            isRegex = 1;
-            regexWord = argv[i + 1];
+
+    int c;
+    while ((c = getopt_long(argc, argv, "f:s:r:vh?", long_opts, NULL)) != -1) {
+        switch (c) {
+            case 'f':
+                fileLocation = optarg;
+                break;
+            case 's':
+                searchWord = optarg;
+                break;
+            case 'r':
+                //printf ("option -r with value `%s'\n", optarg);
+                isRegex = 1;
+                regexWord = optarg;
+                break;
+            case 'v':
+                printf("logseeker v%s\n", VERSION);
+                printf("Copyright (C) 2019 Ronnie Bailey\n");
+                exit(1);
+                break;
+            case 'h':
+                usage();
+                exit(1);
+                break;
+            default:
+                return -1;
         }
     }
 

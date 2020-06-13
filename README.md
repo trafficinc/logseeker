@@ -11,16 +11,22 @@ $ `sudo make install`
 
 
 
-## To Run:
+## To Run, Example:
 
-[serach vis regex] $ `logseeker -f ./bin/errorLog -r "(.*)secret(.*)"`
+[serach vis regex] $ `logseeker -f /var/log/error.log -r "(.*)secret(.*)"`
 
-[serach vis word] $ `logseeker -f ./bin/errorLog -s "secret"`
+[serach vis word] $ `logseeker -f /var/log/error.log -s "secret"`
 
 ## Dump results to a file
 
-$ `logseeker -f ./bin/errorLog -s "core:notice"`> core-notices.txt
+$ `logseeker -f /var/log/error.log -s "core:notice"`> core-notices.txt
 
 ## Flags:
 
-`-f` = path/log file, `-s` = search word OR `-r` = regex expression
+`-f` = Log file to scan
+
+`-s` = Search word OR `-r` = Regex expression
+
+`-h` = Help menu
+
+`-v` = Version
